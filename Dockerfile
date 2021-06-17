@@ -32,6 +32,8 @@ FROM alpine:${RELEASE_IMAGE_VERSION} AS app
 
 RUN apk update && \
     apk add --no-cache \
+    libstdc++ \
+    libgcc \
     bash \
     openssl-dev
 
