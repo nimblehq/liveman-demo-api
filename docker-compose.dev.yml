@@ -15,7 +15,7 @@ services:
     container_name: liveman_livebook
     environment:
       - LIVEBOOK_PASSWORD=livemanisawesome
-      - LIVEBOOK_DEFAULT_RUNTIME=mix:/data
+      - LIVEBOOK_DEFAULT_RUNTIME=mix:/data/liveman
     ports:
       - "8080:8080"
     volumes:

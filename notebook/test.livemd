@@ -3,9 +3,9 @@
 ## This is a test module
 
 ```elixir
-Test.print()
+Liveman.hello()
 ```
 
 ```elixir
-Test.print()
+Liveman.hello()
 ```
