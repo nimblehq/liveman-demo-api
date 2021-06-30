@@ -21,7 +21,7 @@ defmodule Liveman.Survey.Schemas.QuestionTest do
                survey_id: ["can't be blank"],
                text: ["can't be blank"],
                id: ["can't be blank"]
-             }s
+             }
     end
   end
 end
