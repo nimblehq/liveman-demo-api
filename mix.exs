@@ -42,9 +42,9 @@ defmodule Liveman.MixProject do
     [
       {:credo, "~> 1.5.6", [only: [:dev, :test], runtime: false]},
       {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
+      {:exvcr, "~> 0.12.3", [only: :test]},
       {:ecto_sql, "~> 3.4"},
       {:ex_machina, "~> 2.7.0"},
-      {:exvcr, "~> 0.12.3", [only: :test]},
       {:excoveralls, "~> 0.14.1", [only: :test]},
       {:faker, "~> 0.16.0"},
       {:gettext, "~> 0.11"},
