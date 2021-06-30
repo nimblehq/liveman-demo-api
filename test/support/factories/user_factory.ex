@@ -1,4 +1,4 @@
-defmodule LivemanWeb.User.UserFactory do
+defmodule Liveman.User.UserFactory do
   alias Liveman.User.Schemas.User
 
   defmacro __using__(_opts) do
