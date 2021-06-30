@@ -4,7 +4,7 @@ defmodule Liveman.User.Schemas.User do
   import Ecto.Changeset
 
   schema "users" do
-    field(:email, :date)
+    field(:email, :string)
 
     timestamps()
   end
