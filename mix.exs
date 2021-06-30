@@ -41,13 +41,15 @@ defmodule Liveman.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5.6", [only: [:dev, :test], runtime: false]},
+      {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
       {:exvcr, "~> 0.12.3", [only: :test]},
       {:ecto_sql, "~> 3.4"},
-      {:ex_machina, "~> 2.7.0", [only: :test]},
+      {:ex_machina, "~> 2.7.0"},
       {:excoveralls, "~> 0.14.1", [only: :test]},
-      {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
+      {:faker, "~> 0.16.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:jsonapi, git: "https://github.com/jeregrine/jsonapi.git", branch: "master"},
       {:mimic, "~> 1.5.0", [only: :test]},
       {:phoenix, "~> 1.5.9"},
       {:phoenix_ecto, "~> 4.1"},
