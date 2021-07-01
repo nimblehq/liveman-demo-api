@@ -1,7 +1,19 @@
-defmodule LivemanWeb.V1.UserView do
+defmodule LivemanWeb.V1.SurveyView do
   use JSONAPI.View, type: "survey"
 
   def fields do
-    [:title, :description]
+    [
+      :id,
+      :title,
+      :description,
+      :type,
+      :thank_email_above_threshold,
+      :thank_email_below_threshold,
+      :is_active,
+      :cover_image_url,
+      :created_at,
+      :active_at,
+      :inactive_at
+    ]
   end
 end

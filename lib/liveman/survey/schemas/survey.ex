@@ -3,7 +3,6 @@ defmodule Liveman.Survey.Schemas.Survey do
   import Ecto.Changeset
 
   schema "surveys" do
-    field(:id, :string)
     field(:access_code_prompt, :string)
     field(:access_code_validation, :string)
     field(:active_at, :naive_datetime)
