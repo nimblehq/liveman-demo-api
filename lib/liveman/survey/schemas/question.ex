@@ -4,6 +4,7 @@ defmodule Liveman.Survey.Schemas.Question do
 
   alias Liveman.Survey.Schemas.Survey
 
+  @primary_key {:id, :string, autogenerate: false}
   embedded_schema do
     field(:correct_answer_id, :string)
     field(:cover_background_color, :string)
@@ -33,7 +34,7 @@ defmodule Liveman.Survey.Schemas.Question do
   @doc false
   def changeset(question, attrs) do
     question
-    |> cast_embed(attrs, [
+    |> cast(attrs, [
       :text,
       :help_text,
       :display_order,
@@ -56,28 +57,8 @@ defmodule Liveman.Survey.Schemas.Question do
       :survey_id
     ])
     |> validate_required([
-      :id,
       :text,
-      :help_text,
-      :display_order,
-      :short_text,
-      :pick,
-      :display_type,
-      :is_mandatory,
-      :correct_answer_id,
-      :facebook_profile,
-      :twitter_profile,
-      :image_url,
-      :cover_image_url,
-      :cover_image_opacity,
-      :cover_background_color,
-      :is_shareable_on_facebook,
-      :is_shareable_on_twitter,
-      :font_face,
-      :font_face,
-      :tag_list,
       :survey_id
     ])
-    |> assoc_constraint(:survey)
   end
 end

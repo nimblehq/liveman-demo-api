@@ -4,6 +4,7 @@ defmodule Liveman.Survey.Schemas.Survey do
 
   alias Liveman.Survey.Schemas.Question
 
+  @primary_key {:id, :string, autogenerate: false}
   embedded_schema do
     field(:access_code_prompt, :string)
     field(:access_code_validation, :string)
@@ -36,7 +37,7 @@ defmodule Liveman.Survey.Schemas.Survey do
   @doc false
   def changeset(survey, attrs) do
     survey
-    |> cast_embed(attrs, [
+    |> cast(attrs, [
       :title,
       :description,
       :access_code_prompt,
@@ -61,17 +62,10 @@ defmodule Liveman.Survey.Schemas.Survey do
       :theme
     ])
     |> validate_required([
-      :id,
       :title,
       :description,
-      :thank_email_above_threshold,
-      :thank_email_below_threshold,
       :type,
-      :is_active,
-      :cover_image_url,
-      :created_at,
-      :active_at,
-      :inactive_at
+      :created_at
     ])
   end
 end

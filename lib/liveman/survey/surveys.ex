@@ -1,7 +1,8 @@
 defmodule Liveman.Survey.Surveys do
   use Ecto.Schema
 
-  alias Liveman.Survey.Schemas.{Survey, Question}
+  alias Liveman.Survey.Schemas.Question
+  alias Liveman.Survey.Schemas.Survey
 
   @survey_json_file "priv/repo/data/surveys.json"
 
