@@ -5,7 +5,7 @@ defmodule Liveman.Survey.Schemas.Survey do
   alias Liveman.Survey.Schemas.Question
 
   @primary_key {:id, :string, autogenerate: false}
-  schema "surveys" do
+  embedded_schema do
     field(:access_code_prompt, :string)
     field(:access_code_validation, :string)
     field(:active_at, :naive_datetime)
@@ -28,7 +28,7 @@ defmodule Liveman.Survey.Schemas.Survey do
     field(:title, :string)
     field(:type, :string)
 
-    has_many(:questions, Question)
+    embeds_many(:questions, Question)
 
     timestamps()
   end
@@ -36,7 +36,7 @@ defmodule Liveman.Survey.Schemas.Survey do
   @doc false
   def changeset(survey, attrs) do
     survey
-    |> cast(attrs, [
+    |> cast_embed(attrs, [
       :title,
       :description,
       :access_code_prompt,

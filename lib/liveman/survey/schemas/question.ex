@@ -6,7 +6,7 @@ defmodule Liveman.Survey.Schemas.Question do
 
   @primary_key {:id, :string, autogenerate: false}
 
-  schema "questions" do
+  embedded_schema do
     field(:correct_answer_id, :integer)
     field(:cover_background_color, :string)
     field(:cover_image_opacity, :float)
