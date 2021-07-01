@@ -16,4 +16,8 @@ defmodule LivemanWeb.V1.SurveyView do
       :inactive_at
     ]
   end
+
+  def relationships do
+    [questions: LivemanWeb.V1.QuestionView]
+  end
 end

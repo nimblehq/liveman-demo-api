@@ -2,6 +2,8 @@ defmodule Liveman.Survey.Schemas.Survey do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Liveman.Survey.Schemas.Question
+
   schema "surveys" do
     field(:access_code_prompt, :string)
     field(:access_code_validation, :string)
@@ -24,6 +26,8 @@ defmodule Liveman.Survey.Schemas.Survey do
     field(:thank_email_below_threshold, :string)
     field(:title, :string)
     field(:type, :string)
+
+    has_many(:questions, Question)
 
     timestamps()
   end
