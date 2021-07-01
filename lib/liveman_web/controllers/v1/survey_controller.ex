@@ -10,7 +10,7 @@ defmodule LivemanWeb.V1.SurveyController do
     render(conn, SurveyView, "index.json", %{data: page.entries, meta: meta_data(page)})
   end
 
-  defp build_pagination_config(%{"page" => page_number, "page_size" => page_size} = params),
+  defp build_pagination_config(%{"page" => _page_number, "page_size" => _page_size} = params),
     do: params
 
   defp build_pagination_config(_params), do: %Scrivener.Config{page_number: 1, page_size: 5}
