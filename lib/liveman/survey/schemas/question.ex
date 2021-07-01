@@ -4,6 +4,8 @@ defmodule Liveman.Survey.Schemas.Question do
 
   alias Liveman.Survey.Schemas.Survey
 
+  @primary_key {:id, :string, autogenerate: false}
+
   schema "questions" do
     field(:correct_answer_id, :integer)
     field(:cover_background_color, :string)
@@ -13,6 +15,7 @@ defmodule Liveman.Survey.Schemas.Question do
     field(:display_type, :string)
     field(:facebook_profile, :string)
     field(:font_face, :string)
+    field(:font_size, :string)
     field(:help_text, :string)
     field(:image_url, :string)
     field(:is_mandatory, :boolean, default: false)
@@ -24,7 +27,7 @@ defmodule Liveman.Survey.Schemas.Question do
     field(:text, :string)
     field(:twitter_profile, :string)
 
-    belongs_to(:survey, Survey)
+    belongs_to(:survey, Survey, foreign_key: :survey_id, type: :string)
 
     timestamps()
   end

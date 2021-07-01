@@ -1,5 +1,5 @@
 defmodule LivemanWeb.V1.QuestionView do
-  use JSONAPI.View, type: "survey"
+  use JSONAPI.View, type: "question"
 
   def fields do
     [

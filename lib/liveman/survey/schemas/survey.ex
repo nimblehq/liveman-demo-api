@@ -4,6 +4,7 @@ defmodule Liveman.Survey.Schemas.Survey do
 
   alias Liveman.Survey.Schemas.Question
 
+  @primary_key {:id, :string, autogenerate: false}
   schema "surveys" do
     field(:access_code_prompt, :string)
     field(:access_code_validation, :string)
