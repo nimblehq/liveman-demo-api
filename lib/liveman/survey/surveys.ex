@@ -39,7 +39,7 @@ defmodule Liveman.Survey.Surveys do
     }
   end
 
-  def build_question(question_json, survey) do
+  defp build_question(question_json, survey) do
     Enum.map(question_json, fn question ->
       %Question{
         id: question["id"],
