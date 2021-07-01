@@ -4,7 +4,6 @@ defmodule Liveman.Survey.Schemas.Survey do
 
   alias Liveman.Survey.Schemas.Question
 
-  @primary_key {:id, :string, autogenerate: false}
   embedded_schema do
     field(:access_code_prompt, :string)
     field(:access_code_validation, :string)
@@ -27,6 +26,7 @@ defmodule Liveman.Survey.Schemas.Survey do
     field(:thank_email_below_threshold, :string)
     field(:title, :string)
     field(:type, :string)
+    field(:theme, :string)
 
     embeds_many(:questions, Question)
 
@@ -57,9 +57,11 @@ defmodule Liveman.Survey.Schemas.Survey do
       :tag_list,
       :is_access_code_required,
       :is_access_code_valid_required,
-      :access_code_validation
+      :access_code_validation,
+      :theme
     ])
     |> validate_required([
+      :id,
       :title,
       :description,
       :thank_email_above_threshold,

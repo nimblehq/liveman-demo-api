@@ -4,10 +4,8 @@ defmodule Liveman.Survey.Schemas.Question do
 
   alias Liveman.Survey.Schemas.Survey
 
-  @primary_key {:id, :string, autogenerate: false}
-
   embedded_schema do
-    field(:correct_answer_id, :integer)
+    field(:correct_answer_id, :string)
     field(:cover_background_color, :string)
     field(:cover_image_opacity, :float)
     field(:cover_image_url, :string)
@@ -35,7 +33,7 @@ defmodule Liveman.Survey.Schemas.Question do
   @doc false
   def changeset(question, attrs) do
     question
-    |> cast(attrs, [
+    |> cast_embed(attrs, [
       :text,
       :help_text,
       :display_order,
@@ -58,6 +56,7 @@ defmodule Liveman.Survey.Schemas.Question do
       :survey_id
     ])
     |> validate_required([
+      :id,
       :text,
       :help_text,
       :display_order,
@@ -76,7 +75,8 @@ defmodule Liveman.Survey.Schemas.Question do
       :is_shareable_on_twitter,
       :font_face,
       :font_face,
-      :tag_list
+      :tag_list,
+      :survey_id
     ])
     |> assoc_constraint(:survey)
   end

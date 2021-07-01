@@ -3,10 +3,10 @@ defmodule Liveman.Survey.Surveys do
 
   alias Liveman.Survey.Schemas.{Survey, Question}
 
-  @survey_json "priv/repo/data/surveys.json"
+  @survey_json_file "priv/repo/data/surveys.json"
 
   def list_surveys do
-    survey_list_json = get_json(@survey_json)
+    survey_list_json = get_json(@survey_json_file)
 
     Enum.map(survey_list_json, fn survey_json ->
       survey = build_survey(survey_json)
