@@ -1,0 +1,7 @@
+# API
+
+## Test
+
+```elixir
+LivemanApi.hello()
+```
