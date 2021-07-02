@@ -1,11 +1,11 @@
-name: "Tests"
+name: 'Tests'
 
 on: pull_request
 
 env:
-  OTP_VERSION: "24.0.1"
-  ELIXIR_VERSION: "1.12.1"
-  NODE_VERSION: "14"
+  OTP_VERSION: '24.0.1'
+  ELIXIR_VERSION: '1.12.1'
+  NODE_VERSION: '14'
   MIX_ENV: test
   DB_HOST: localhost
 
@@ -53,19 +53,17 @@ jobs:
       - name: Install Dependencies
         run: mix deps.get
 
-      - name: Compile dependencies
-        run: mix compile --warnings-as-errors --all-warnings
+      # - name: Compile dependencies
+      #   run: mix compile --warnings-as-errors --all-warnings
 
+      # - name: Create database
+      #   run: mix ecto.create
 
-      - name: Create database
-        run: mix ecto.create
-
-      - name: Migrate database
-        run: mix ecto.migrate
+      # - name: Migrate database
+      #   run: mix ecto.migrate
 
       - name: Run codebase check
         run: mix codebase
 
       - name: Run Tests
         run: mix coverage
-
