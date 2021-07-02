@@ -1,21 +1,21 @@
-# Liveman
+# LivemanApi
 
 **TODO: Add description**
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `liveman` to your list of dependencies in `mix.exs`:
+by adding `liveman_api` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:liveman, "~> 0.1.0"}
+    {:liveman_api, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/liveman](https://hexdocs.pm/liveman).
+be found at [https://hexdocs.pm/liveman_api](https://hexdocs.pm/liveman_api).
 

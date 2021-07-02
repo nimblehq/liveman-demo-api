@@ -1,6 +1,6 @@
-defmodule Liveman do
+defmodule LivemanApi do
   @moduledoc """
-  Documentation for `Liveman`.
+  Documentation for `LivemanApi`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Liveman do
 
   ## Examples
 
-      iex> Liveman.hello()
+      iex> LivemanApi.hello()
       :world
 
   """
