@@ -77,8 +77,7 @@ defmodule Liveman.MixProject do
       codebase: [
         "deps.unlock --check-unused",
         "format --check-formatted",
-        "credo --strict",
-        "sobelow --config"
+        "credo --strict"
       ],
       "codebase.fix": ["deps.clean --unlock --unused", "format"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
