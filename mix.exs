@@ -58,7 +58,7 @@ defmodule Liveman.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.4"},
       {:plug_cowboy, "~> 2.0"},
-      {:sobelow, "~> 0.11", [only: [:dev, :test], runtime: false]},
+      {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"}
     ]
