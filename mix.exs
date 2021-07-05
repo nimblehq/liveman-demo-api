@@ -42,9 +42,9 @@ defmodule Liveman.MixProject do
     [
       {:credo, "~> 1.5.6", [only: [:dev, :test], runtime: false]},
       {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
-      {:exvcr, "~> 0.12.3", [only: :test]},
       {:ecto_sql, "~> 3.4"},
       {:ex_machina, "~> 2.7.0"},
+      {:exvcr, "~> 0.12.3", [only: :test]},
       {:excoveralls, "~> 0.14.1", [only: :test]},
       {:faker, "~> 0.16.0"},
       {:gettext, "~> 0.11"},
@@ -59,7 +59,7 @@ defmodule Liveman.MixProject do
       {:phoenix_live_dashboard, "~> 0.4"},
       {:plug_cowboy, "~> 2.0"},
       {:scrivener_list, "~> 2.0"},
-      {:sobelow, "~> 0.11", [only: [:dev, :test], runtime: false]},
+      {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"}
     ]
