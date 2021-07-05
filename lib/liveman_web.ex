@@ -23,6 +23,8 @@ defmodule LivemanWeb do
 
       import Plug.Conn
       import LivemanWeb.Gettext
+      import LivemanWeb.Factory
+
       alias LivemanWeb.Router.Helpers, as: Routes
     end
   end

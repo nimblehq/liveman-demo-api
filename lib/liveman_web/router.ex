@@ -12,6 +12,10 @@ defmodule LivemanWeb.Router do
   # coveralls-ignore-start
   pipeline :api do
     plug :accepts, ["json"]
+
+    scope "/v1", LivemanWeb, as: :api_v1 do
+      get "/me", V1.UserController, :show
+    end
   end
 
   # coveralls-ignore-stop

@@ -32,8 +32,8 @@ defmodule Liveman.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support", "test/factories"]
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib", "test/support/factories"]
 
   # Specifies your project dependencies.
   #
@@ -41,22 +41,24 @@ defmodule Liveman.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5.6", [only: [:dev, :test], runtime: false]},
-      {:exvcr, "~> 0.12.3", [only: :test]},
-      {:ecto_sql, "~> 3.4"},
-      {:ex_machina, "~> 2.7.0", [only: :test]},
-      {:excoveralls, "~> 0.14.1", [only: :test]},
       {:dialyxir, "~> 1.1.0", [only: [:dev], runtime: false]},
+      {:ecto_sql, "~> 3.4"},
+      {:ex_machina, "~> 2.7.0"},
+      {:exvcr, "~> 0.12.3", [only: :test]},
+      {:excoveralls, "~> 0.14.1", [only: :test]},
+      {:faker, "~> 0.16.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:jsonapi, git: "https://github.com/jeregrine/jsonapi.git", branch: "master"},
       {:mimic, "~> 1.5.0", [only: :test]},
       {:phoenix, "~> 1.5.9"},
-      {:phoenix_ecto, "~> 4.1"},
+      {:phoenix_ecto, "~> 4.3"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.4"},
       {:plug_cowboy, "~> 2.0"},
-      {:sobelow, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.11.1", [only: [:dev, :test], runtime: false]},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"}
     ]

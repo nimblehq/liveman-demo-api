@@ -1,5 +1,5 @@
 defmodule LivemanWeb.PageControllerTest do
-  use LivemanWeb.ConnCase
+  use LivemanWeb.ConnCase, async: true
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

@@ -6,6 +6,7 @@
     "lib/liveman_web.ex",
     "lib/liveman_mail.ex",
     "lib/liveman_web/endpoint.ex",
+    "lib/liveman_web/factory.ex",
     "lib/liveman_web/telemetry.ex",
     "lib/liveman_web/channels/user_socket.ex",
     "lib/liveman_web/views/error_helpers.ex",
