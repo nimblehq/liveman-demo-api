@@ -7,7 +7,7 @@ defmodule Liveman.Survey.Surveys do
   @survey_json_file "priv/repo/data/surveys.json"
 
   def list_surveys do
-    survey_list_json = get_json(@survey_json_file)
+    survey_list_json = get_json()
 
     Enum.map(survey_list_json, fn survey_json ->
       survey = build_survey(survey_json)
@@ -20,9 +20,10 @@ defmodule Liveman.Survey.Surveys do
     end)
   end
 
-  defp get_json(filename) do
-    {:ok, filename}
-    # with {:ok, body} <- File.read(filename), {:ok, json} <- Jason.decode!(body), do: {:ok, json}
+  defp get_json do
+    with {:ok, body} <- File.read(@survey_json_file),
+         {:ok, json} <- Jason.decode!(body),
+         do: {:ok, json}
   end
 
   defp build_survey(json) do
