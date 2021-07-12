@@ -21,7 +21,8 @@ defmodule Liveman.Survey.Surveys do
   end
 
   defp get_json(filename) do
-    with {:ok, body} <- File.read(filename), {:ok, json} <- Jason.decode!(body), do: {:ok, json}
+    {:ok, filename}
+    # with {:ok, body} <- File.read(filename), {:ok, json} <- Jason.decode!(body), do: {:ok, json}
   end
 
   defp build_survey(json) do
