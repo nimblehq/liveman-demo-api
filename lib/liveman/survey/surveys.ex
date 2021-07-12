@@ -4,7 +4,7 @@ defmodule Liveman.Survey.Surveys do
   alias Liveman.Survey.Schemas.Question
   alias Liveman.Survey.Schemas.Survey
 
-  @survey_json_file "priv/repo/data/surveys.json"
+  @json_file "priv/repo/data/surveys.json"
 
   def list_surveys do
     survey_list_json = get_json()
@@ -21,9 +21,7 @@ defmodule Liveman.Survey.Surveys do
   end
 
   defp get_json do
-    with {:ok, body} <- File.read(@survey_json_file),
-         {:ok, json} <- Jason.decode!(body),
-         do: {:ok, json}
+    with {:ok, body} <- File.read(@json_file), {:ok, json} <- Jason.decode!(body), do: {:ok, json}
   end
 
   defp build_survey(json) do
