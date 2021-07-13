@@ -10,18 +10,13 @@ defmodule Liveman.Survey.Surveys do
     survey_list_json = get_json()
 
     Enum.map(survey_list_json, fn survey_json ->
-      survey = build_survey(survey_json)
-      questions = build_question(survey_json["questions"], survey)
-
-      survey
-      |> Ecto.Changeset.change()
-      |> Ecto.Changeset.put_embed(:questions, questions)
-      |> Ecto.Changeset.apply_changes()
+      build_survey(survey_json)
     end)
   end
 
-  defp get_json do
-    with {:ok, body} <- File.read(@json_file), {:ok, json} <- Jason.decode!(body), do: {:ok, json}
+  def get_json do
+    {_, body} = File.read(@json_file)
+    Jason.decode!(body)
   end
 
   defp build_survey(json) do
@@ -36,15 +31,16 @@ defmodule Liveman.Survey.Surveys do
       created_at: json["created_at"],
       active_at: json["active_at"],
       inactive_at: json["inactive_at"],
-      type: json["type"]
+      type: json["type"],
+      questions: build_question(json["questions"], json["id"])
     }
   end
 
-  defp build_question(question_json, survey) do
+  defp build_question(question_json, survey_id) do
     Enum.map(question_json, fn question ->
       %Question{
         id: question["id"],
-        survey_id: survey.id,
+        survey_id: survey_id,
         text: question["text"],
         help_text: question["help_text"],
         display_order: question["display_order"],
