@@ -35,6 +35,7 @@ defmodule Liveman.Survey.Schemas.Question do
   def changeset(question, attrs) do
     question
     |> cast(attrs, [
+      :id,
       :text,
       :help_text,
       :display_order,

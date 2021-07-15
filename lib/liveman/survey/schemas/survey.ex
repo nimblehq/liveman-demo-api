@@ -37,6 +37,7 @@ defmodule Liveman.Survey.Schemas.Survey do
   def changeset(survey, attrs) do
     survey
     |> cast(attrs, [
+      :id,
       :title,
       :description,
       :access_code_prompt,
