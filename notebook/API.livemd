@@ -3,5 +3,9 @@
 ## Test
 
 ```elixir
-LivemanApi.hello()
+client = LivemanApi.client("http://dockerhost:4000")
+```
+
+```elixir
+LivemanApi.get(client, "/v1/me")
 ```
