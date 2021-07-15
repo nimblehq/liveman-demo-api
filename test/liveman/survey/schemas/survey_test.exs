@@ -12,7 +12,7 @@ defmodule Liveman.Survey.Schemas.SurveyTest do
       assert changeset.valid?
     end
 
-    test "returns invalid changeset if params are missing" do
+    test "returns invalid changeset if required params are missing" do
       changeset = Survey.changeset(%Survey{}, %{})
 
       refute changeset.valid?
