@@ -3,6 +3,7 @@ defmodule LivemanWeb.V1.QuestionView do
 
   def fields do
     [
+      :id,
       :text,
       :help_text,
       :display_order,
