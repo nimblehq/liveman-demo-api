@@ -58,6 +58,7 @@ defmodule Liveman.Survey.Schemas.Question do
       :survey_id
     ])
     |> validate_required([
+      :id,
       :text,
       :survey_id
     ])

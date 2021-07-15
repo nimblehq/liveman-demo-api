@@ -63,6 +63,7 @@ defmodule Liveman.Survey.Schemas.Survey do
     ])
     |> cast_embed(:questions)
     |> validate_required([
+      :id,
       :title,
       :description,
       :type,

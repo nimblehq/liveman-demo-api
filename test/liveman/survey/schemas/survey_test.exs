@@ -21,7 +21,8 @@ defmodule Liveman.Survey.Schemas.SurveyTest do
                created_at: ["can't be blank"],
                description: ["can't be blank"],
                title: ["can't be blank"],
-               type: ["can't be blank"]
+               type: ["can't be blank"],
+               id: ["can't be blank"]
              }
     end
   end
