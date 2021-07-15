@@ -11,7 +11,6 @@ defmodule Liveman.Survey.Schemas.Survey do
     field(:active_at, :naive_datetime)
     field(:cover_background_color, :string)
     field(:cover_image_url, :string)
-    field(:created_at, :naive_datetime)
     field(:default_language, :string)
     field(:description, :string)
     field(:footer_content, :string)
@@ -31,7 +30,7 @@ defmodule Liveman.Survey.Schemas.Survey do
 
     embeds_many(:questions, Question)
 
-    timestamps()
+    timestamps(inserted_at: :created_at)
   end
 
   @doc false
