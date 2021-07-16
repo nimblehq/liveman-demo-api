@@ -4,10 +4,13 @@
 
 <!-- livebook:{"livebook_object":"cell_input","name":"Base URL","type":"text","value":"http://dockerhost:4000"} -->
 
-## /v1/me
-
 ```elixir
 base_url = IO.gets("Base URL") |> String.trim()
+```
 
+## Users
+
+```elixir
+# GET /v1/me
 LivemanApi.get(base_url, "/v1/me")
 ```
