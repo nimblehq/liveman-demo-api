@@ -10,7 +10,8 @@ base_url = IO.gets("Base URL") |> String.trim()
 
 ## Users
 
+### GET /v1/me
+
 ```elixir
-# GET /v1/me
 LivemanApi.get(base_url, "/v1/me")
 ```
