@@ -15,6 +15,7 @@ defmodule LivemanWeb.Router do
 
     scope "/v1", LivemanWeb, as: :api_v1 do
       get "/me", V1.UserController, :show
+      get "/surveys", V1.SurveyController, :index
     end
   end
 
