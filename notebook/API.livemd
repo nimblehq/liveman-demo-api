@@ -1,7 +1,18 @@
 # API
 
-## Test
+## Variables
+
+<!-- livebook:{"livebook_object":"cell_input","name":"Base URL","type":"text","value":"http://dockerhost:4000"} -->
 
 ```elixir
-LivemanApi.hello()
+base_url = IO.gets("Base URL") |> String.trim()
+```
+
+## Users
+
+### GET /v1/me
+Used to fetch the current user's profile details
+
+```elixir
+LivemanApi.get(base_url, "/v1/me")
 ```
