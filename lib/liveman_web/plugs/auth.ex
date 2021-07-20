@@ -5,11 +5,9 @@ defmodule LivemanWeb.Plugs.Auth do
 
   alias LivemanWeb.V1.ErrorView
 
-  def init(opts) do
-    opts
-  end
+  def init(opts), do: opts
 
-  def call(conn, _opts) do
+  def call(conn, _) do
     authenticate_user(conn)
   end
 

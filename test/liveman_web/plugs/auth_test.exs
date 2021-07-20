@@ -3,6 +3,14 @@ defmodule LivemanWeb.Plugs.AuthTest do
 
   alias LivemanWeb.Plugs.Auth
 
+  describe "init/1" do
+    test "returns the same input" do
+      init = Auth.init(%{})
+
+      assert init == %{}
+    end
+  end
+
   describe "call/2" do
     test "returns an authenticated connection when the request is an authenticated request", %{
       conn: conn
