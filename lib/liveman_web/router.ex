@@ -1,6 +1,6 @@
 defmodule LivemanWeb.Router do
   use LivemanWeb, :router
-  import LivemanWeb.Plug.Auth
+  import LivemanWeb.Plugs.Auth
 
   pipeline :browser do
     plug :accepts, ["html"]

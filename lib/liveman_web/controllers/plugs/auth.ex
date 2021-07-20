@@ -1,4 +1,4 @@
-defmodule LivemanWeb.Plug.Auth do
+defmodule LivemanWeb.Plugs.Auth do
   use LivemanWeb, :controller
 
   import Plug.Conn
