@@ -1,6 +1,5 @@
 defmodule LivemanWeb.Router do
   use LivemanWeb, :router
-  import LivemanWeb.Plugs.Auth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -11,7 +10,7 @@ defmodule LivemanWeb.Router do
   end
 
   pipeline :require_authenticated_user do
-    plug(:authenticate_user)
+    plug LivemanWeb.Plugs.Auth
   end
 
   # coveralls-ignore-start

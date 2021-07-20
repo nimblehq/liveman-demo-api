@@ -5,7 +5,15 @@ defmodule LivemanWeb.Plugs.Auth do
 
   alias LivemanWeb.V1.ErrorView
 
-  def authenticate_user(conn, _) do
+  def init(opts) do
+    opts
+  end
+
+  def call(conn, _opts) do
+    authenticate_user(conn)
+  end
+
+  defp authenticate_user(conn) do
     access_token =
       conn
       |> get_req_header("access_token")
