@@ -1,4 +1,4 @@
-defmodule LivemanWeb.V1AnswerRequestTest do
+defmodule LivemanWeb.V1.AnswerRequestTest do
   use LivemanWeb.ConnCase, async: true
 
   describe "POST /v1/responses" do
