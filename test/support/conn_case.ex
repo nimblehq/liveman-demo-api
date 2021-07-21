@@ -28,6 +28,7 @@ defmodule LivemanWeb.ConnCase do
       import Phoenix.ConnTest
       import LivemanWeb.ConnCase
       import Liveman.Factory
+      import LivemanWeb.ApiHelper
 
       alias LivemanWeb.Router.Helpers, as: Routes
 

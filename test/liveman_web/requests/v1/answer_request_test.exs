@@ -17,7 +17,10 @@ defmodule LivemanWeb.V1.AnswerRequestTest do
         ]
       }
 
-      conn = post(conn, Routes.api_v1_answer_path(conn, :create), attrs)
+      conn =
+        conn
+        |> authenticated_api_conn
+        |> post(Routes.api_v1_answer_path(conn, :create), attrs)
 
       assert conn.status == 201
     end
@@ -37,7 +40,10 @@ defmodule LivemanWeb.V1.AnswerRequestTest do
         ]
       }
 
-      conn = post(conn, Routes.api_v1_answer_path(conn, :create), attrs)
+      conn =
+        conn
+        |> authenticated_api_conn
+        |> post(Routes.api_v1_answer_path(conn, :create), attrs)
 
       assert conn.status == 422
     end
@@ -56,7 +62,10 @@ defmodule LivemanWeb.V1.AnswerRequestTest do
         ]
       }
 
-      conn = post(conn, Routes.api_v1_answer_path(conn, :create), attrs)
+      conn =
+        conn
+        |> authenticated_api_conn
+        |> post(Routes.api_v1_answer_path(conn, :create), attrs)
 
       assert conn.status == 422
     end
@@ -66,9 +75,22 @@ defmodule LivemanWeb.V1.AnswerRequestTest do
         survey_id: "d5de6a8f8f5f1cfe51bc"
       }
 
-      conn = post(conn, Routes.api_v1_answer_path(conn, :create), attrs)
+      conn =
+        conn
+        |> authenticated_api_conn
+        |> post(Routes.api_v1_answer_path(conn, :create), attrs)
 
       assert conn.status == 422
+    end
+
+    test "returns an error response when the request is an unauthenticated request", %{conn: conn} do
+      attrs = %{
+        survey_id: "d5de6a8f8f5f1cfe51bc"
+      }
+
+      conn = post(conn, Routes.api_v1_answer_path(conn, :create), attrs)
+
+      assert conn.status == 401
     end
   end
 end

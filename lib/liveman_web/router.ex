@@ -9,15 +9,22 @@ defmodule LivemanWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :require_authenticated_user do
+    plug LivemanWeb.Plugs.Auth
+  end
+
   # coveralls-ignore-start
   pipeline :api do
     plug :accepts, ["json"]
+  end
 
-    scope "/v1", LivemanWeb, as: :api_v1 do
-      get "/me", V1.UserController, :show
-      get "/surveys", V1.SurveyController, :index
-      post "/responses", V1.AnswerController, :create
-    end
+  scope "/v1", LivemanWeb, as: :api_v1 do
+    pipe_through :api
+    get "/surveys", V1.SurveyController, :index
+
+    pipe_through :require_authenticated_user
+    get "/me", V1.UserController, :show
+    post "/responses", V1.AnswerController, :create
   end
 
   # coveralls-ignore-stop
