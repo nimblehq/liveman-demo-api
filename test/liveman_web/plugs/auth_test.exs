@@ -27,6 +27,8 @@ defmodule LivemanWeb.Plugs.AuthTest do
       assert json_response(conn, 401) == %{
                "errors" => [%{"detail" => "Authentication failed"}]
              }
+
+      assert conn.halted == true
     end
   end
 end
