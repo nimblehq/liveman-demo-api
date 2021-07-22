@@ -9,20 +9,10 @@ defmodule LivemanWeb.V1.RegistrationController do
       :ok ->
         json(conn, %{meta: %{detail: "An confirmation email has been sent with OTP code"}})
 
-      {:error, :empty_email} ->
+      {:error, message} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(ErrorView, "error.json", errors: [%{detail: "Email cannot be blank"}])
-
-      {:error, :empty_password} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(ErrorView, "error.json", errors: [%{detail: "Password cannot be blank"}])
-
-      {:error, :empty_email_and_password} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(ErrorView, "error.json", errors: [%{detail: "Email and Password cannot be blank"}])
+        |> render(ErrorView, "error.json", errors: [%{detail: message}])
     end
   end
 end

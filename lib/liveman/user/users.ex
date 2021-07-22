@@ -1,21 +1,46 @@
 defmodule Liveman.User.Users do
+  @email_regex_format ~r/^\S+@\S+\.\S+$/
+
   def validate_registratiom_params(params) do
     email = params["email"] || ""
     password = params["password"] || ""
-    validate_credential_params(email, password)
+
+    validate_credential_params_presence(String.trim(email), String.trim(password))
   end
 
-  defp validate_credential_params(email, password) when email == "" and password == "" do
-    {:error, :empty_email_and_password}
+  defp validate_credential_params_presence(email, password) when email == "" and password == "" do
+    {:error, "Email and Password cannot be blank"}
   end
 
-  defp validate_credential_params(email, password) when email == "" and password != "" do
-    {:error, :empty_email}
+  defp validate_credential_params_presence(email, password) when email == "" and password != "" do
+    {:error, "Email cannot be blank"}
   end
 
-  defp validate_credential_params(email, password) when email != "" and password == "" do
-    {:error, :empty_password}
+  defp validate_credential_params_presence(email, password) when email != "" and password == "" do
+    {:error, "Password cannot be blank"}
   end
 
-  defp validate_credential_params(_, _), do: :ok
+  defp validate_credential_params_presence(email, password) do
+    cond do
+      !valid_email?(email) && !valid_password?(password) ->
+        {:error, "Email is invalid and Password cannot be less than 6 characters"}
+
+      !valid_email?(email) && valid_password?(password) ->
+        {:error, "Email is invalid"}
+
+      valid_email?(email) && !valid_password?(password) ->
+        {:error, "Password cannot be less than 6 characters"}
+
+      true ->
+        :ok
+    end
+  end
+
+  defp valid_email?(email) do
+    Regex.match?(@email_regex_format, email)
+  end
+
+  defp valid_password?(password) do
+    String.length(password) >= 6
+  end
 end
