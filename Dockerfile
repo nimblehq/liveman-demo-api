@@ -20,10 +20,20 @@ COPY . .
 
 ENV MIX_ENV=prod
 
-RUN mix do deps.get, deps.compile, compile
+# Install and compile dependencies
+RUN mix do deps.get, deps.compile
 
+# Build assets
+COPY assets/package.json assets/package-lock.json ./assets/
+RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 
-RUN mix release
+COPY priv priv
+COPY assets assets
+RUN npm run --prefix ./assets deploy
+RUN mix phx.digest
+
+# Compile and build app release
+RUN mix do compile, release
 
 #
 # Release
