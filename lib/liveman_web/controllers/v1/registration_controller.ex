@@ -15,4 +15,16 @@ defmodule LivemanWeb.V1.RegistrationController do
         |> render(ErrorView, "error.json", errors: [%{detail: message}])
     end
   end
+
+  def verify(conn, params) do
+    otp = params["otp"] |> to_string() |> String.trim()
+
+    if otp != "" do
+      render(conn, UserView, "show.json", %{data: build(:user)})
+    else
+      conn
+      |> put_status(:unprocessable_entity)
+      |> render(ErrorView, "error.json", errors: [%{detail: "OTP cannot be blank"}])
+    end
+  end
 end
