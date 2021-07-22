@@ -1,18 +1,11 @@
 defmodule LivemanWeb.V1.RegistrationController do
   use LivemanWeb, :controller
-  use Parameters
 
   alias LivemanWeb.V1.ErrorView
-
-  params do
-    requires(:email, :string)
-  end
+  alias Liveman.User.Users
 
   def create(conn, params) do
-    email = params["email"] || ""
-    password = params["password"] || ""
-
-    case validate_params(email, password) do
+    case Users.validate_registratiom_params(params) do
       :ok ->
         json(conn, %{meta: %{detail: "An confirmation email has been sent with OTP code"}})
 
@@ -32,18 +25,4 @@ defmodule LivemanWeb.V1.RegistrationController do
         |> render(ErrorView, "error.json", errors: [%{detail: "Email and Password cannot be blank"}])
     end
   end
-
-  def validate_params(email, password) when email == "" and password == "" do
-    {:error, :empty_email_and_password}
-  end
-
-  def validate_params(email, password) when email == "" and password != "" do
-    {:error, :empty_email}
-  end
-
-  def validate_params(email, password) when email != "" and password == "" do
-    {:error, :empty_password}
-  end
-
-  def validate_params(_, _), do: :ok
 end
