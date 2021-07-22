@@ -11,7 +11,8 @@ defmodule LivemanWeb.Endpoint do
   ]
 
   socket "/socket", LivemanWeb.UserSocket,
-    # Ensure that any idle connections are closed by Phoenix before they reach Heroku's 55-second timeout window.
+    # Ensure that any idle connections are closed by Phoenix
+    # before they reach Heroku's 55-second timeout window.
     websocket: [timeout: 45_000],
     longpoll: false
 
