@@ -3,7 +3,7 @@ defmodule Liveman.Survey.Surveys do
 
   alias Liveman.Survey.Schemas.Survey
 
-  @json_file "repo/data/surveys.json"
+  @json_file "#{:code.priv_dir(:liveman)}/repo/data/surveys.json"
 
   def list_surveys do
     survey_list_json = fetch_surveys_from_file!()
@@ -12,12 +12,7 @@ defmodule Liveman.Survey.Surveys do
   end
 
   def fetch_surveys_from_file! do
-    file_path = "#{:code.priv_dir(:liveman)}/#{@json_file}"
-    {_, body} = File.read(file_path)
-    IO.puts("***************")
-    IO.inspect(file_path, label: "file_path: ")
-    IO.inspect(body, label: "Body is: ")
-    IO.puts("***************")
+    {_, body} = File.read(@json_file)
     Jason.decode!(body)
   end
 
