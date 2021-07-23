@@ -11,8 +11,27 @@ base_url = IO.gets("Base URL") |> String.trim()
 ## Users
 
 ### GET /v1/me
+
 Used to fetch the current user's profile details
 
 ```elixir
 LivemanApi.get(base_url, "/v1/me")
+```
+
+## Surveys
+
+### GET /v1/surveys
+
+Used to fetch all the available surveys.
+
+Returns a 200 OK response
+
+```elixir
+LivemanApi.get(base_url, "/v1/surveys")
+```
+
+Supports pagination by passing the page number and page size as params
+
+```elixir
+LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
 ```
