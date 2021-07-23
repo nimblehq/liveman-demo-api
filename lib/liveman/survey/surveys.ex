@@ -11,9 +11,14 @@ defmodule Liveman.Survey.Surveys do
     get_survey_list(survey_list_json)
   end
 
-  defp fetch_surveys_from_file! do
-    {_, body} = File.read(@json_file)
-    Jason.decode!(body)
+  def fetch_surveys_from_file! do
+    file_path = "#{File.cwd!()}/#{@json_file}"
+    {_, body} = File.read(file_path)
+    IO.puts("***************")
+    IO.inspect(file_path, label: "file_path: ")
+    IO.inspect(body, label: "Body is: ")
+    IO.puts("***************")
+    # Jason.decode!(body)
   end
 
   def create_answers(params) do
