@@ -16,19 +16,15 @@ RUN apk update && \
 
 WORKDIR /app
 
-COPY . .
-
 ENV MIX_ENV=prod
+
+COPY . .
 
 # Install and compile dependencies
 RUN mix do deps.get, deps.compile
 
 # Build assets
-COPY assets/package.json assets/package-lock.json ./assets/
 RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
-
-COPY priv priv
-COPY assets assets
 RUN npm run --prefix ./assets deploy
 RUN mix phx.digest
 
