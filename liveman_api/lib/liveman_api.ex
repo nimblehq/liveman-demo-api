@@ -5,23 +5,21 @@ defmodule LivemanApi do
 
   @timeout 30_000
 
-  def get(base_url, url, query \\ %{}) do
+  def get(base_url, url, query \\ %{}, headers \\ []) do
     base_url
-    |> client()
+    |> client(headers)
     |> Tesla.get(url, query: Map.to_list(query))
     |> handle_response()
   end
 
-  def post(base_url, url, body \\ %{}) do
+  def post(base_url, url, body \\ %{}, headers \\ []) do
     base_url
-    |> client()
+    |> client(headers)
     |> Tesla.post(url, body)
     |> handle_response()
   end
 
-  defp client(base_url, opts \\ %{}) do
-    headers = opts[:headers] || []
-
+  defp client(base_url, headers) do
     middleware = [
       {Tesla.Middleware.BaseUrl, base_url},
       Tesla.Middleware.JSON,

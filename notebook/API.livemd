@@ -35,3 +35,81 @@ Supports pagination by passing the page number and page size as params
 ```elixir
 LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
 ```
+
+### POST /v1/surveys
+
+Used to create an answer to a particular survey
+
+Requires a valid access_token in the header
+
+Returns a 201 Created response
+
+#### 201 OK
+
+```elixir
+headers = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+body = %{
+  survey_id: "d5de6a8f8f5f1cfe51bc",
+  questions: [
+    %{
+      id: "940d229e4cd87cd1e202",
+      answers: [
+        %{
+          id: "037574cb93d16800eecd"
+        }
+      ]
+    }
+  ]
+}
+
+LivemanApi.post(base_url, "/v1/responses", body, headers)
+```
+
+It will return a 422 Unprocessable Entity response if a survey or question is invalid
+
+#### 422 Unprocessable Entity
+
+```elixir
+header = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+body = %{
+  survey_id: "invalid",
+  questions: [
+    %{
+      id: "940d229e4cd87cd1e202",
+      answers: [
+        %{
+          id: "037574cb93d16800eecd"
+        }
+      ]
+    }
+  ]
+}
+
+# Invalid Survey
+LivemanApi.post(base_url, "/v1/responses", body, headers)
+```
+
+#### 422 Unprocessable Entity
+
+```elixir
+header = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+body = %{
+  survey_id: "d5de6a8f8f5f1cfe51bc",
+  questions: [
+    %{
+      id: "invalid",
+      answers: [
+        %{
+          id: "037574cb93d16800eecd"
+        }
+      ]
+    }
+  ]
+}
+
+# Invalid Question
+LivemanApi.post(base_url, "/v1/responses", body, headers)
+```
