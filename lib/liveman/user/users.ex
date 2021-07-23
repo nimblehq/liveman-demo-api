@@ -2,10 +2,10 @@ defmodule Liveman.User.Users do
   @email_regex_format ~r/^\S+@\S+\.\S+$/
 
   def validate_registratiom_params(params) do
-    email = params["email"] || ""
-    password = params["password"] || ""
+    email = params["email"] |> to_string() |> String.trim()
+    password = params["password"] |> to_string() |> String.trim()
 
-    validate_credential_params_presence(String.trim(email), String.trim(password))
+    validate_credential_params_presence(email, password)
   end
 
   defp validate_credential_params_presence(email, password) when email == "" and password == "" do
