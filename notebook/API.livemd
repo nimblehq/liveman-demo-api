@@ -26,11 +26,15 @@ Used to fetch all the available surveys.
 
 Returns a 200 OK response
 
+#### 200 OK
+
 ```elixir
 LivemanApi.get(base_url, "/v1/surveys")
 ```
 
 Supports pagination by passing the page number and page size as params
+
+#### 200 OK
 
 ```elixir
 LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
