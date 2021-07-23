@@ -3,7 +3,7 @@ defmodule Liveman.Survey.Surveys do
 
   alias Liveman.Survey.Schemas.Survey
 
-  @json_file "priv/repo/data/surveys.json"
+  @json_file "#{:code.priv_dir(:liveman)}/repo/data/surveys.json"
 
   def list_surveys do
     survey_list_json = fetch_surveys_from_file!()
