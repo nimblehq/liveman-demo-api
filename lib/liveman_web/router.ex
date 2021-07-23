@@ -19,13 +19,19 @@ defmodule LivemanWeb.Router do
   end
 
   scope "/v1", LivemanWeb, as: :api_v1 do
-    pipe_through :api
-    get "/surveys", V1.SurveyController, :index
-    post "/registers", V1.RegistrationController, :create
+    scope "/" do
+      pipe_through(:api)
 
-    pipe_through :require_authenticated_user
-    get "/me", V1.UserController, :show
-    post "/responses", V1.AnswerController, :create
+      get("/surveys", V1.SurveyController, :index)
+      post("/registers", V1.RegistrationController, :create)
+    end
+
+    scope "/" do
+      pipe_through(:require_authenticated_user)
+
+      get("/me", V1.UserController, :show)
+      post("/responses", V1.AnswerController, :create)
+    end
   end
 
   # coveralls-ignore-stop
