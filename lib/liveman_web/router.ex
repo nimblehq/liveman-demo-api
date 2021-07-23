@@ -22,8 +22,10 @@ defmodule LivemanWeb.Router do
     scope "/" do
       pipe_through(:api)
 
-      get("/surveys", V1.SurveyController, :index)
-      post("/registers", V1.RegistrationController, :create)
+      post "/users/signup", V1.UserController, :create
+      post "/users/verify", V1.UserController, :verify
+
+      get "/surveys", V1.SurveyController, :index
     end
 
     scope "/" do
