@@ -1,9 +1,9 @@
 defmodule LivemanWeb.V1.UserController do
   use LivemanWeb, :controller
 
-  alias LivemanWeb.V1.UserView
-  alias LivemanWeb.V1.ErrorView
   alias Liveman.User.Users
+  alias LivemanWeb.V1.ErrorView
+  alias LivemanWeb.V1.UserView
 
   def create(conn, params) do
     case Users.validate_registratiom_params(params) do
