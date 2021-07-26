@@ -10,15 +10,14 @@ services:
     ports:
       - "5432:5432"
 
-  livebook:
-    image: livebook/livebook:0.2.0
-    container_name: liveman_livebook
+  liveman:
+    image: nimblehq/liveman:0.1.0
+    container_name: liveman_liveman
     environment:
       - LIVEBOOK_PASSWORD=livemanisawesome
-      - LIVEBOOK_DEFAULT_RUNTIME=mix:/data/liveman_api
     ports:
       - "8080:8080"
     volumes:
-      - .:/data
+      - ./notebook:/data/notebook
     extra_hosts:
       - "dockerhost:$DOCKERHOST"
