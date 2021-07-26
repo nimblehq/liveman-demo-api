@@ -6,9 +6,9 @@ defmodule LivemanWeb.V1.UserController do
   alias LivemanWeb.V1.UserView
 
   def create(conn, params) do
-    case Users.validate_registratiom_params(params) do
+    case Users.validate_registration_params(params) do
       :ok ->
-        json(conn, %{meta: %{detail: "An confirmation email has been sent with OTP code"}})
+        json(conn, %{meta: %{detail: "An confirmation email has been sent with an OTP code"}})
 
       {:error, message} ->
         conn

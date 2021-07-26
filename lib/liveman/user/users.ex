@@ -1,7 +1,7 @@
 defmodule Liveman.User.Users do
   @email_regex_format ~r/^\S+@\S+\.\S+$/
 
-  def validate_registratiom_params(params) do
+  def validate_registration_params(params) do
     email = params["email"] |> to_string() |> String.trim()
     password = params["password"] |> to_string() |> String.trim()
 
