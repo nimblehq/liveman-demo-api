@@ -13,3 +13,7 @@ cover
 **/tmp/
 doc
 /priv/static/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore

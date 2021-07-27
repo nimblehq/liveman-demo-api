@@ -1,19 +1,27 @@
+# For deploying to AWS Elastic Beanstalk
 version: "3.8"
 
 services:
-  build:
-    build:
-      context: .
-      cache_from:
-        - liveman-build
-      target: build
-    image: liveman-build
-
   app:
-    build:
-      context: .
-      cache_from:
-        - liveman-build
-        - liveman
-      target: app
-    image: liveman
+    image: 180624313529.dkr.ecr.ap-southeast-1.amazonaws.com/liveman-demo-api
+    ports:
+      - "80:4000"
+    environment:
+      - HOST
+      - PORT
+      - DATABASE_URL
+      - SECRET_KEY_BASE
+    volumes:
+      - notebook:/data/notebook
+
+  liveman:
+    image: nimblehq/liveman:0.1.0
+    ports:
+      - "8080:8080"
+    environment:
+      - LIVEBOOK_PASSWORD
+    volumes:
+      - notebook:/data/notebook
+
+volumes:
+  notebook:
