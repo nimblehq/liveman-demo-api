@@ -3,17 +3,10 @@ defmodule Liveman.Survey.Surveys do
 
   alias Liveman.Survey.Schemas.Survey
 
-  @json_file "#{:code.priv_dir(:liveman)}/repo/data/surveys.json"
-
   def list_surveys do
     survey_list_json = fetch_surveys_from_file!()
 
     get_survey_list(survey_list_json)
-  end
-
-  defp fetch_surveys_from_file! do
-    {_, body} = File.read(@json_file)
-    Jason.decode!(body)
   end
 
   def create_answers(params) do
@@ -35,6 +28,15 @@ defmodule Liveman.Survey.Surveys do
     else
       {:error, :invalid_questions}
     end
+  end
+
+  defp fetch_surveys_from_file! do
+    {_, body} = File.read(get_json_file())
+    Jason.decode!(body)
+  end
+
+  defp get_json_file do
+    "#{:code.priv_dir(:liveman)}/repo/data/surveys.json"
   end
 
   defp get_survey_list(survey_list_json) do
