@@ -10,8 +10,6 @@ services:
       - PORT
       - DATABASE_URL
       - SECRET_KEY_BASE
-    volumes:
-      - notebook:/data/notebook
 
   liveman:
     image: nimblehq/liveman:0.1.0
@@ -20,7 +18,4 @@ services:
     environment:
       - LIVEBOOK_PASSWORD
     volumes:
-      - notebook:/data/notebook
-
-volumes:
-  notebook:
+      - ./notebook:/data/notebook
