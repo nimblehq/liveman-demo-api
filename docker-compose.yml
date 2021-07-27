@@ -1,11 +1,10 @@
-# For deploying to AWS Elastic Beanstalk
 version: "3.8"
 
 services:
   app:
     image: 180624313529.dkr.ecr.ap-southeast-1.amazonaws.com/liveman-demo-api
     ports:
-      - "80:4000"
+      - "${PORT}:${PORT}"
     environment:
       - HOST
       - PORT

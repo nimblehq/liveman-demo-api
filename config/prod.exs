@@ -10,6 +10,8 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :liveman, LivemanWeb.Endpoint,
+  http: [port: {:system, "PORT"}],
+  url: [host: {:system, "HOST"}, port: {:system, "PORT"}],
   cache_static_manifest: "priv/static/cache_manifest.json",
   code_reloader: false,
   debug_errors: false,

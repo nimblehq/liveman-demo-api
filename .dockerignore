@@ -1,5 +1,7 @@
 _build
+.elasticbeanstalk/*
 .elixir_ls
+.git
 .github
 .gitignore
 .dockerignore
@@ -13,7 +15,3 @@ cover
 **/tmp/
 doc
 /priv/static/
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-.git
-.gitignore
