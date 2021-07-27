@@ -31,12 +31,8 @@ defmodule Liveman.Survey.Surveys do
   end
 
   defp fetch_surveys_from_file! do
-    {_, body} = File.read(get_json_file())
+    {_, body} = File.read("#{:code.priv_dir(:liveman)}/repo/data/surveys.json")
     Jason.decode!(body)
-  end
-
-  defp get_json_file do
-    "#{:code.priv_dir(:liveman)}/repo/data/surveys.json"
   end
 
   defp get_survey_list(survey_list_json) do
