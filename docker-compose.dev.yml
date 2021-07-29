@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     image: postgres:12.3
-    container_name: liveman_db
+    container_name: liveman-demo-api_db
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_DB=liveman_dev
@@ -12,7 +12,7 @@ services:
 
   liveman:
     image: nimblehq/liveman:0.1.0
-    container_name: liveman_liveman
+    container_name: liveman-demo-api_liveman
     environment:
       - LIVEBOOK_PASSWORD=livemanisawesome
     ports:
