@@ -3,22 +3,21 @@ version: "3.8"
 services:
   db:
     image: postgres:12.3
-    container_name: liveman_db
+    container_name: liveman-demo-api_db
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_DB=liveman_dev
     ports:
       - "5432:5432"
 
-  livebook:
-    image: livebook/livebook:0.2.0
-    container_name: liveman_livebook
+  liveman:
+    image: nimblehq/liveman:0.1.0
+    container_name: liveman-demo-api_liveman
     environment:
       - LIVEBOOK_PASSWORD=livemanisawesome
-      - LIVEBOOK_DEFAULT_RUNTIME=mix:/data/liveman_api
     ports:
       - "8080:8080"
     volumes:
-      - .:/data
+      - ./notebook:/data/notebook
     extra_hosts:
       - "dockerhost:$DOCKERHOST"
