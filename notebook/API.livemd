@@ -198,7 +198,7 @@ This endpoint will return a 200 OK response after successfully verifying the use
 
 ```elixir
 body = %{
-  "otp": "621951"
+  "otp" => "621951"
 }
 
 LivemanApi.post(base_url, "/v1/users/singup", body)
@@ -210,7 +210,7 @@ A 422 Unprocessable Entity error will be raised given an invalid OTP
 
 ```elixir
 body = %{
-  "otp": ""
+  "otp" => ""
 }
 
 LivemanApi.post(base_url, "/v1/users/singup", body)
