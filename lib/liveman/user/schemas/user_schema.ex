@@ -34,10 +34,10 @@ defmodule Liveman.User.Schemas.User do
     changeset
     |> validate_required([:password])
     |> validate_length(:password, min: 6, max: 80)
-    |> update_hashed_password
+    |> put_hashed_password
   end
 
-  defp update_hashed_password(changeset) do
+  defp put_hashed_password(changeset) do
     password = get_change(changeset, :password)
 
     if password do
