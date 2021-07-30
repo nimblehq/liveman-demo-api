@@ -6,7 +6,8 @@ defmodule Liveman.User.UserFactory do
       def user_factory do
         %User{
           id: Faker.UUID.v4(),
-          email: Faker.Internet.email()
+          email: Faker.Internet.email(),
+          password: "secret"
         }
       end
     end

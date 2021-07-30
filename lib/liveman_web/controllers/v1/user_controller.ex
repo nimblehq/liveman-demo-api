@@ -1,19 +1,21 @@
 defmodule LivemanWeb.V1.UserController do
   use LivemanWeb, :controller
 
+  import LivemanWeb.ErrorHelpers
+
   alias Liveman.User.Users
   alias LivemanWeb.V1.ErrorView
   alias LivemanWeb.V1.UserView
 
   def create(conn, params) do
-    case Users.validate_registration_params(params) do
-      :ok ->
+    case Users.register_user(params) do
+      {:ok, _} ->
         json(conn, %{meta: %{detail: "An confirmation email has been sent with an OTP code"}})
 
-      {:error, message} ->
+      {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(ErrorView, "error.json", errors: [%{detail: message}])
+        |> render(ErrorView, "error.json", errors: [%{detail: error_message(changeset.errors)}])
     end
   end
 
@@ -31,5 +33,9 @@ defmodule LivemanWeb.V1.UserController do
 
   def show(conn, _params) do
     render(conn, UserView, "show.json", %{data: build(:user)})
+  end
+
+  defp error_message(errors) do
+    Enum.join(pretty_errors(errors), ", ")
   end
 end

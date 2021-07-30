@@ -45,7 +45,7 @@ defmodule LivemanWeb.V1UserRequestTest do
         |> post(Routes.api_v1_user_path(conn, :create, params))
 
       assert json_response(conn, 422) == %{
-               "errors" => [%{"detail" => "Email and Password cannot be blank"}]
+               "errors" => [%{"detail" => "Password can't be blank, Email can't be blank"}]
              }
     end
   end
