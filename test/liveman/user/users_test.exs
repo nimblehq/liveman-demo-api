@@ -5,9 +5,9 @@ defmodule Liveman.User.UsersTest do
 
   describe "register_user/1" do
     test "creates a user successfully when the given params are valid" do
-      result = Users.register_user(%{email: "john@doe.com", password: "secret"})
+      user = Users.register_user(%{email: "john@doe.com", password: "secret"})
 
-      assert {:ok, _} = result
+      assert {:ok, _} = user
     end
 
     test "returns an error when the given params are invalid" do
