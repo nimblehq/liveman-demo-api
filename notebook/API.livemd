@@ -163,7 +163,7 @@ body = %{
   "password" => "secret"
 }
 
-LivemanApi.post(base_url, "/v1/users/singup", body)
+LivemanApi.post(base_url, "/v1/users/signup", body)
 ```
 
 #### 422 Unprocessable Entity - Invalid Email and Password
@@ -174,7 +174,7 @@ body = %{
   "password" => "qwe"
 }
 
-LivemanApi.post(base_url, "/v1/users/singup", body)
+LivemanApi.post(base_url, "/v1/users/signup", body)
 ```
 
 #### 422 Unprocessable Entity - Black Email and Password
@@ -185,7 +185,7 @@ body = %{
   "password" => ""
 }
 
-LivemanApi.post(base_url, "/v1/users/singup", body)
+LivemanApi.post(base_url, "/v1/users/signup", body)
 ```
 
 After user registration they will need to submit the OTP they received to the verification endpoint.
@@ -201,7 +201,7 @@ body = %{
   "otp" => "621951"
 }
 
-LivemanApi.post(base_url, "/v1/users/singup", body)
+LivemanApi.post(base_url, "/v1/users/verify", body)
 ```
 
 A 422 Unprocessable Entity error will be raised given an invalid OTP
@@ -213,5 +213,5 @@ body = %{
   "otp" => ""
 }
 
-LivemanApi.post(base_url, "/v1/users/singup", body)
+LivemanApi.post(base_url, "/v1/users/verify", body)
 ```
