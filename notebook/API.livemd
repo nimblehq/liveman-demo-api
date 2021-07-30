@@ -14,8 +14,12 @@ base_url = IO.gets("Base URL") |> String.trim()
 
 Used to fetch the current user's profile details
 
+### 200 OK
+
 ```elixir
-LivemanApi.get(base_url, "/v1/me")
+headers = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+LivemanApi.get(base_url, "/v1/me", %{}, headers)
 ```
 
 ## Surveys
@@ -36,7 +40,7 @@ Supports pagination by passing the page number and page size as params
 LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
 ```
 
-### POST /v1/surveys
+### POST /v1/respnoses
 
 Used to create an answer to a particular survey
 
@@ -44,7 +48,7 @@ Requires a valid access_token in the header
 
 Returns a 201 Created response
 
-#### 201 OK
+#### 201 OK - Valid Params
 
 ```elixir
 headers = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
@@ -68,7 +72,7 @@ LivemanApi.post(base_url, "/v1/responses", body, headers)
 
 It will return a 422 Unprocessable Entity response if a survey or question is invalid
 
-#### 422 Unprocessable Entity
+#### 422 Unprocessable Entity - Invalid Survey
 
 ```elixir
 header = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
@@ -87,11 +91,10 @@ body = %{
   ]
 }
 
-# Invalid Survey
 LivemanApi.post(base_url, "/v1/responses", body, headers)
 ```
 
-#### 422 Unprocessable Entity
+#### 422 Unprocessable Entity - Invalid Question
 
 ```elixir
 header = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
@@ -110,6 +113,5 @@ body = %{
   ]
 }
 
-# Invalid Question
 LivemanApi.post(base_url, "/v1/responses", body, headers)
 ```

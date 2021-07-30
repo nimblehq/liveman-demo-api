@@ -7,23 +7,23 @@ defmodule LivemanApi do
 
   def get(base_url, url, query \\ %{}, headers \\ []) do
     base_url
-    |> client(headers)
-    |> Tesla.get(url, query: Map.to_list(query))
+    |> client()
+    |> Tesla.get(url, query: Map.to_list(query), headers: headers)
     |> handle_response()
   end
 
   def post(base_url, url, body \\ %{}, headers \\ []) do
     base_url
-    |> client(headers)
-    |> Tesla.post(url, body)
+    |> client()
+    |> Tesla.post(url, body, headers: headers)
     |> handle_response()
   end
 
-  defp client(base_url, headers) do
+  defp client(base_url) do
     middleware = [
       {Tesla.Middleware.BaseUrl, base_url},
       Tesla.Middleware.JSON,
-      {Tesla.Middleware.Headers, [{"Content-Type", "application/json"} | headers]},
+      {Tesla.Middleware.Headers, [{"Content-Type", "application/json"}]},
       {Tesla.Middleware.Timeout, [timeout: @timeout]}
     ]
 
