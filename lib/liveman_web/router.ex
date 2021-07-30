@@ -20,7 +20,7 @@ defmodule LivemanWeb.Router do
 
   scope "/v1", LivemanWeb, as: :api_v1 do
     scope "/" do
-      pipe_through(:api)
+      pipe_through :api
 
       scope "/users" do
         post "/signup", V1.UserController, :create
@@ -31,10 +31,10 @@ defmodule LivemanWeb.Router do
     end
 
     scope "/" do
-      pipe_through(:require_authenticated_user)
+      pipe_through [:api, :require_authenticated_user]
 
-      get("/me", V1.UserController, :show)
-      post("/responses", V1.AnswerController, :create)
+      get "/me", V1.UserController, :show
+      post "/responses", V1.AnswerController, :create
     end
   end
 
