@@ -7,7 +7,8 @@ defmodule Liveman.User.UserFactory do
         %User{
           id: Faker.UUID.v4(),
           email: Faker.Internet.email(),
-          password: "secret"
+          password: "secret",
+          hashed_password: Bcrypt.hash_pwd_salt("secret")
         }
       end
     end

@@ -6,6 +6,7 @@ defmodule Liveman.User.Schemas.User do
   @email_regex_format ~r/^\S+@\S+\.\S+$/
 
   @derive {Inspect, except: [:password]}
+  @primary_key {:id, Ecto.UUID, autogenerate: true}
   schema "users" do
     field(:email, :string)
     field(:password, :string, virtual: true)

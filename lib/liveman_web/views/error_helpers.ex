@@ -46,8 +46,9 @@ defmodule LivemanWeb.ErrorHelpers do
   end
 
   def pretty_errors(errors) do
-    errors
-    |> Enum.map(&do_prettify/1)
+    Enum.map(errors, fn error ->
+      do_prettify(error)
+    end)
   end
 
   defp do_prettify({field_name, message}) when is_bitstring(message) do
