@@ -1,7 +1,7 @@
 defmodule LivemanWeb.V1.UserController do
   use LivemanWeb, :controller
 
-  import LivemanWeb.ErrorHelpers
+  import LivemanWeb.EctoHelpers
 
   alias Liveman.User.Users
   alias LivemanWeb.V1.ErrorView
