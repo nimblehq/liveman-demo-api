@@ -26,6 +26,7 @@ defmodule Liveman.User.UsersTest do
       email = "john@doe.com"
       insert(:user, email: email)
       {:error, changeset} = Users.register_user(%{email: email, password: "secret"})
+
       assert "has already been taken" in errors_on(changeset).email
     end
   end
