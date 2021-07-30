@@ -18,13 +18,5 @@ defmodule Liveman.User.UsersTest do
                email: ["can't be blank"]
              } = errors_on(changeset)
     end
-
-    test "validates email uniqueness" do
-      email = "john@doe.com"
-      insert(:user, email: email)
-      {:error, changeset} = Users.register_user(%{email: email, password: "secret"})
-
-      assert "has already been taken" in errors_on(changeset).email
-    end
   end
 end
