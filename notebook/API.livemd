@@ -44,7 +44,7 @@ Supports pagination by passing the page number and page size as params
 LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
 ```
 
-### POST /v1/respnoses
+### POST /v1/responses
 
 Used to create an answer to a particular survey
 
