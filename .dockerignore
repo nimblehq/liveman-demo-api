@@ -1,5 +1,7 @@
 _build
+.elasticbeanstalk/*
 .elixir_ls
+.git
 .github
 .gitignore
 .dockerignore

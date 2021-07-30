@@ -20,10 +20,16 @@ COPY . .
 
 ENV MIX_ENV=prod
 
-RUN mix do deps.get, deps.compile, compile
+# Install and compile dependencies
+RUN mix do deps.get, deps.compile
 
+# Build assets
+RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
+RUN npm run --prefix ./assets deploy
+RUN mix phx.digest
 
-RUN mix release
+# Compile and build app release
+RUN mix do compile, release
 
 #
 # Release
@@ -47,6 +53,6 @@ RUN addgroup -g 1000 appuser && \
 COPY --from=build --chown=1000:1000 /app/_build/prod/rel/liveman ./
 COPY bin/start.sh ./bin/start.sh
 
-USER app_user
+USER appuser
 
 CMD bin/start.sh
