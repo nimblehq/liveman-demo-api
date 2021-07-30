@@ -14,6 +14,8 @@ base_url = IO.gets("Base URL") |> String.trim()
 
 Used to fetch the current user's profile details
 
+Requires a valid `access_token` in the header
+
 ### 200 OK
 
 ```elixir
@@ -44,11 +46,11 @@ LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
 
 Used to create an answer to a particular survey
 
-Requires a valid access_token in the header
+Requires a valid `access_token` in the header
 
 Returns a 201 Created response
 
-#### 201 OK - Valid Params
+#### 201 Created - Valid Params
 
 ```elixir
 headers = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
