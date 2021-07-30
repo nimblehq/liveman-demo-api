@@ -14,8 +14,110 @@ base_url = IO.gets("Base URL") |> String.trim()
 
 Used to fetch the current user's profile details
 
+Requires a valid `access_token` in the header
+
+### 200 OK
+
 ```elixir
-LivemanApi.get(base_url, "/v1/me")
+headers = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+LivemanApi.get(base_url, "/v1/me", %{}, headers)
+```
+
+## Surveys
+
+### GET /v1/surveys
+
+Used to fetch all the available surveys.
+
+Returns a 200 OK response
+
+### 200 OK
+
+```elixir
+LivemanApi.get(base_url, "/v1/surveys")
+```
+
+Supports pagination by passing the page number and page size as params
+
+```elixir
+LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
+```
+
+### POST /v1/responses
+
+Used to create an answer to a particular survey
+
+Requires a valid `access_token` in the header
+
+Returns a 201 Created response
+
+#### 201 Created - Valid Params
+
+```elixir
+headers = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+body = %{
+  survey_id: "d5de6a8f8f5f1cfe51bc",
+  questions: [
+    %{
+      id: "940d229e4cd87cd1e202",
+      answers: [
+        %{
+          id: "037574cb93d16800eecd"
+        }
+      ]
+    }
+  ]
+}
+
+LivemanApi.post(base_url, "/v1/responses", body, headers)
+```
+
+It will return a 422 Unprocessable Entity response if a survey or question is invalid
+
+#### 422 Unprocessable Entity - Invalid Survey
+
+```elixir
+header = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+body = %{
+  survey_id: "invalid",
+  questions: [
+    %{
+      id: "940d229e4cd87cd1e202",
+      answers: [
+        %{
+          id: "037574cb93d16800eecd"
+        }
+      ]
+    }
+  ]
+}
+
+LivemanApi.post(base_url, "/v1/responses", body, headers)
+```
+
+#### 422 Unprocessable Entity - Invalid Question
+
+```elixir
+header = [access_token: "77564df8-7823-45b2-b9ef-38dac927ddfd"]
+
+body = %{
+  survey_id: "d5de6a8f8f5f1cfe51bc",
+  questions: [
+    %{
+      id: "invalid",
+      answers: [
+        %{
+          id: "037574cb93d16800eecd"
+        }
+      ]
+    }
+  ]
+}
+
+LivemanApi.post(base_url, "/v1/responses", body, headers)
 ```
 
 ## Surveys
