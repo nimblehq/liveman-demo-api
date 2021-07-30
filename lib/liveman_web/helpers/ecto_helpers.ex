@@ -29,6 +29,5 @@ defmodule LivemanWeb.EctoHelpers do
   defp do_interpolate(string, []), do: string
 
   defp do_to_string(value) when is_integer(value), do: Integer.to_string(value)
-  defp do_to_string(value) when is_bitstring(value), do: value
   defp do_to_string(value) when is_atom(value), do: Atom.to_string(value)
 end
