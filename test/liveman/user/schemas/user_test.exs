@@ -40,5 +40,18 @@ defmodule Liveman.User.Schemas.UserTest do
                password: ["can't be blank"]
              }
     end
+
+    test "returns invalid changeset if the params are invalid" do
+      attrs = %{email: "invalid-email", password: "abc"}
+
+      changeset = User.changeset(attrs)
+
+      refute changeset.valid?
+
+      assert errors_on(changeset) == %{
+               email: ["is invalid"],
+               password: ["should be at least 6 character(s)"]
+             }
+    end
   end
 end
