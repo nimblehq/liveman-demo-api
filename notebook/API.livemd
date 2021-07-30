@@ -141,3 +141,77 @@ Supports pagination by passing the page number and page size as params
 ```elixir
 LivemanApi.get(base_url, "/v1/surveys", %{page: 2, page_size: 8})
 ```
+
+## Registration flow
+
+For a user to register, they first will need to submit their email and password.
+Upon submitting their email and password, an OTP will be sent to their email which they can use to verify their account before using the rest of the application
+
+### POST /users/signup
+
+Used to submit the user's credientials, and if successful, will return a message about the confirmation email being sent.
+
+This endpoint will raise a 422 Unprocessable Entity error if their email is already taken.
+
+Returns a 200 OK response
+
+#### 200 OK
+
+```elixir
+body = %{
+  "email" => "johndoe@email.com",
+  "password" => "secret"
+}
+
+LivemanApi.post(base_url, "/v1/users/signup", body)
+```
+
+#### 422 Unprocessable Entity - Invalid Email and Password
+
+```elixir
+body = %{
+  "email" => "johndoe",
+  "password" => "qwe"
+}
+
+LivemanApi.post(base_url, "/v1/users/signup", body)
+```
+
+#### 422 Unprocessable Entity - Black Email and Password
+
+```elixir
+body = %{
+  "email" => "",
+  "password" => ""
+}
+
+LivemanApi.post(base_url, "/v1/users/signup", body)
+```
+
+After user registration they will need to submit the OTP they received to the verification endpoint.
+
+### POST /users/verify
+
+This endpoint will return a 200 OK response after successfully verifying the user.
+
+#### 200 OK
+
+```elixir
+body = %{
+  "otp" => "621951"
+}
+
+LivemanApi.post(base_url, "/v1/users/verify", body)
+```
+
+A 422 Unprocessable Entity error will be raised given an invalid OTP
+
+#### 422 Unprocessable Entity - Blank OTP
+
+```elixir
+body = %{
+  "otp" => ""
+}
+
+LivemanApi.post(base_url, "/v1/users/verify", body)
+```
