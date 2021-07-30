@@ -4,22 +4,19 @@ defmodule Liveman.User.UsersTest do
   alias Liveman.User.Users
 
   describe "register_user/1" do
-    test "requires email and password to be set" do
+    test "creates a user successfully when the given params are valid" do
+      result = Users.register_user(%{email: "john@doe.com", password: "secret"})
+
+      assert {:ok, _} = result
+    end
+
+    test "returns an error when the given params are invalid" do
       {:error, changeset} = Users.register_user(%{})
 
       assert %{
                password: ["can't be blank"],
                email: ["can't be blank"]
              } = errors_on(changeset)
-    end
-
-    test "validates email and password when given" do
-      {:error, changeset} = Users.register_user(%{email: "not valid", password: "abc"})
-
-      assert %{
-               email: ["is invalid"],
-               password: ["should be at least 6 character(s)"]
-             } == errors_on(changeset)
     end
 
     test "validates email uniqueness" do
